@@ -378,19 +378,5 @@ Details about the error:");
             //VFSManager.FormatDisk();
             System.Console.WriteLine(VFSManager.GetVolume(current_directory));
         }
-
-        //public void oobe(string filename)
-        //{
-        //    try
-        //    {
-        //        bool test = VFSManager.FileExists(current_directory + @"\" + filename);
-        //        System.Console.WriteLine("Result: " + test);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Error(1);
-        //        System.Console.WriteLine(ex.ToString());
-        //    }
-        //}
     }
 }
