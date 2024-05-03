@@ -375,6 +375,7 @@ Details about the error:");
 
         public void Test_app()
         {
+            //testing
             //VFSManager.FormatDisk();
             System.Console.WriteLine(VFSManager.GetVolume(current_directory));
         }
