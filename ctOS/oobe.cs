@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
 
 namespace ctOS
