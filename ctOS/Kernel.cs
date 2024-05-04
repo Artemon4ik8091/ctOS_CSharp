@@ -208,6 +208,10 @@ datetime - print date and time
                 case "test_app":
                     Test_app();
                     break;
+                case "reset":
+                    var reset = new reset();
+                    reset.reset_main();
+                    break;
                 case "oobe":
                     //System.Console.Write("Enter filename: ");
                     //filename = System.Console.ReadLine();

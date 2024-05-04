@@ -16,21 +16,25 @@ namespace ctOS
         public void main_oobe(string filename, string current_directory)
         {
             var core = new Kernel();
-
-            //System.Console.Write("Enter filename: ");
-            //filename = System.Console.ReadLine();
-
+            string oobe_cfg_file_data = "";
+            string oobe_cfg_file = @"0:\sys\oobe.cfg";
             try
             {
                 bool test = VFSManager.FileExists(@"0:\sys\oobe.cfg");
-                System.Console.WriteLine("Result: " + test);
                 if (test == true)
                 {
                     System.Console.WriteLine("File Found!");
-                    //string file_data = core.read_file(@"0:\sys\oobe.cfg");
-                    core.write_file(@"0:\sys\oobe.cfg", "Writed text!");
-                    string file_data = core.read_file(@"0:\sys\oobe.cfg");
-                    System.Console.WriteLine(file_data);
+                    oobe_cfg_file_data = core.read_file(oobe_cfg_file);
+                    if (oobe_cfg_file_data == "true")
+                    {
+                        System.Console.WriteLine("OOBE skip...");
+                    }
+                    if (oobe_cfg_file_data == "false")
+                    {
+                        System.Console.WriteLine("OOBE Starting...");
+                        core.write_file(oobe_cfg_file, "true");
+                        System.Console.WriteLine("Success!");
+                    }
                 }
             }
             catch (Exception ex)
