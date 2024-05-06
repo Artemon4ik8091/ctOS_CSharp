@@ -22,6 +22,8 @@ namespace ctOS
         string current_directory = @"0:\";
         string old_current_directory = "";
         string file = "";
+        string oobe_cfg_file = @"0:\sys\oobe.cfg";
+        string user_cfg_file = @"0:\sys\user.cfg";
         protected override void BeforeRun()
         {
             MouseManager.ScreenWidth = 1280;
@@ -220,6 +222,10 @@ datetime - print date and time
                     var oobe = new oobe();
                     oobe.main_oobe(filename, current_directory);
                     break;
+                case "username":
+                    string result = Get_username();
+                    System.Console.WriteLine(result);
+                    break;
             }
         }
 
@@ -375,6 +381,12 @@ Details about the error:");
         public void reboot()
         {
             Power.Reboot();
+        }
+
+        public string Get_username()
+        {
+            string result = read_file(user_cfg_file);
+            return result;
         }
 
         public void Test_app()

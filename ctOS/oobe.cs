@@ -15,14 +15,21 @@ namespace ctOS
         public void main_oobe(string filename, string current_directory)
         {
             var core = new Kernel();
-            string oobe_cfg_file_data = "";
             string oobe_cfg_file = @"0:\sys\oobe.cfg";
+            string oobe_cfg_file_data = "";
+            string user_cfg_file = @"0:\sys\user.cfg";
+            string user_cfg_file_data = "";
             try
             {
-                bool test = VFSManager.FileExists(@"0:\sys\oobe.cfg");
-                if (test == true)
+                bool oobe_cfg_ping = VFSManager.FileExists(oobe_cfg_file);
+                bool user_cfg_ping = VFSManager.FileExists(user_cfg_file);
+                if (oobe_cfg_ping == false || user_cfg_ping == false)
                 {
-                    System.Console.WriteLine("File Found!");
+                    System.Console.WriteLine("Files not found.");
+                }
+                if (oobe_cfg_ping == true && user_cfg_ping == true)
+                {
+                    System.Console.WriteLine("Files Found!");
                     oobe_cfg_file_data = core.read_file(oobe_cfg_file);
                     if (oobe_cfg_file_data == "true")
                     {
@@ -31,6 +38,9 @@ namespace ctOS
                     if (oobe_cfg_file_data == "false")
                     {
                         System.Console.WriteLine("OOBE Starting...");
+                        Console.Write("Enter username: ");
+                        string username = Console.ReadLine();
+                        core.write_file(user_cfg_file, username);
                         core.write_file(oobe_cfg_file, "true");
                         System.Console.WriteLine("Success!");
                     }
