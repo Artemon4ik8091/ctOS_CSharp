@@ -12,7 +12,7 @@ namespace ctOS
     internal class oobe
     {
         // code for oobe
-        public void main_oobe(string filename, string current_directory)
+        public void main_oobe()
         {
             var core = new Kernel();
             string oobe_cfg_file = @"0:\sys\oobe.cfg";
@@ -29,11 +29,11 @@ namespace ctOS
                 }
                 if (oobe_cfg_ping == true && user_cfg_ping == true)
                 {
-                    System.Console.WriteLine("Files Found!");
+                    //System.Console.WriteLine("Files Found!");
                     oobe_cfg_file_data = core.read_file(oobe_cfg_file);
                     if (oobe_cfg_file_data == "true")
                     {
-                        System.Console.WriteLine("OOBE skip...");
+                        //System.Console.WriteLine("OOBE skip...");
                     }
                     if (oobe_cfg_file_data == "false")
                     {
@@ -43,6 +43,7 @@ namespace ctOS
                         core.write_file(user_cfg_file, username);
                         core.write_file(oobe_cfg_file, "true");
                         System.Console.WriteLine("Success!");
+                        System.Console.WriteLine("Press any key..");
                     }
                 }
             }

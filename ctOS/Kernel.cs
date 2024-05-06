@@ -12,6 +12,7 @@ using System.Buffers;
 using Cosmos.Core.Memory;
 using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
+using System.Reflection.Metadata;
 
 
 namespace ctOS
@@ -24,8 +25,10 @@ namespace ctOS
         string file = "";
         string oobe_cfg_file = @"0:\sys\oobe.cfg";
         string user_cfg_file = @"0:\sys\user.cfg";
+        string username = "";
         protected override void BeforeRun()
         {
+            
             MouseManager.ScreenWidth = 1280;
             MouseManager.ScreenHeight = 800;
             MouseManager.X = 1280 / 2;
@@ -41,9 +44,12 @@ namespace ctOS
 
         protected override void Run()
         {
+            username = Get_username();
             System.Console.ForegroundColor = ConsoleColor.White;
-            System.Console.Write("devOS [" + current_directory + "] >> ");
+            System.Console.Write("devOS {" + username + "} [" + current_directory + "] >> ");
             old_current_directory = current_directory;
+            var oobe = new oobe();
+            oobe.main_oobe();
             Commands();
 
         }
@@ -220,7 +226,7 @@ datetime - print date and time
                     //oobe(filename);
 
                     var oobe = new oobe();
-                    oobe.main_oobe(filename, current_directory);
+                    oobe.main_oobe();
                     break;
                 case "username":
                     string result = Get_username();
