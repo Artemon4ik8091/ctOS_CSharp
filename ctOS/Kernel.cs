@@ -13,13 +13,15 @@ using Cosmos.Core.Memory;
 using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
 using System.Reflection.Metadata;
+using Cosmos.System.FileSystem.FAT;
 
 
 namespace ctOS
 {
     public class Kernel : Sys.Kernel
     {
-        Sys.FileSystem.CosmosVFS fs;
+        //Sys.FileSystem.CosmosVFS fs;
+        Sys.FileSystem.CosmosVFS fs = new Cosmos.System.FileSystem.CosmosVFS();
         string current_directory = @"0:\";
         string old_current_directory = "";
         string file = "";
@@ -232,6 +234,8 @@ datetime - print date and time
                     string result = Get_username();
                     System.Console.WriteLine(result);
                     break;
+                case "":
+                    break;
             }
         }
 
@@ -400,6 +404,7 @@ Details about the error:");
             //testing
             //VFSManager.FormatDisk();
             System.Console.WriteLine(VFSManager.GetVolume(current_directory));
+            
         }
     }
 }
