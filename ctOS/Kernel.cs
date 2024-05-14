@@ -49,12 +49,13 @@ namespace ctOS
         protected override void Run()
         {
             
-            username = Get_username();
+            //username = Get_username();
             System.Console.ForegroundColor = ConsoleColor.White;
-            System.Console.Write("devOS {" + username + "} [" + current_directory + "] >> ");
+            //System.Console.Write("devOS {" + username + "} [" + current_directory + "] >> ");
+            System.Console.Write("devOS [" + current_directory + "] >> ");
             old_current_directory = current_directory;
             var oobe = new oobe();
-            oobe.main_oobe();
+            //oobe.main_oobe();
             Commands();
 
         }
@@ -75,7 +76,8 @@ namespace ctOS
                     guicl.GuiMain();
                     break;
                 case "logo":
-                    Logo();
+                    var Logos = new Logos();
+                    Logos.logo();
                     break;
                 case "simerr1":
                     Error(1);
@@ -267,19 +269,7 @@ Details about the error:");
             }
         }
 
-        public void Logo()
-        {
-            System.Console.ForegroundColor = ConsoleColor.Cyan;
-            System.Console.WriteLine(@"             /$$      /$$$$$$   /$$$$$$ 
-            | $$     /$$__  $$ /$$__  $$
-  /$$$$$$$ /$$$$$$  | $$  \ $$| $$  \__/
- /$$_____/|_  $$_/  | $$  | $$|  $$$$$$ 
-| $$        | $$    | $$  | $$ \____  $$
-| $$        | $$ /$$| $$  | $$ /$$  \ $$
-|  $$$$$$$  |  $$$$/|  $$$$$$/|  $$$$$$/
- \_______/   \___/   \______/  \______/                                        
-");
-        }
+        
 
         public void ClearConsole()
         {
@@ -397,7 +387,7 @@ Details about the error:");
             Power.Reboot();
         }
 
-        public string Get_username()
+        public string Get_username()        //не работает нормально, лучше не юзайте
         {
             string result = read_file(user_cfg_file);
             return result;

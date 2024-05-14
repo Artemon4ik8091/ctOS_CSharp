@@ -294,5 +294,19 @@ namespace ctOS
             Console.WriteLine("[===========]");
             Thread.Sleep(450);
         }
+
+        public void old_logo()
+        {
+            System.Console.ForegroundColor = ConsoleColor.Cyan;
+            System.Console.WriteLine(@"             /$$      /$$$$$$   /$$$$$$ 
+            | $$     /$$__  $$ /$$__  $$
+  /$$$$$$$ /$$$$$$  | $$  \ $$| $$  \__/
+ /$$_____/|_  $$_/  | $$  | $$|  $$$$$$ 
+| $$        | $$    | $$  | $$ \____  $$
+| $$        | $$ /$$| $$  | $$ /$$  \ $$
+|  $$$$$$$  |  $$$$/|  $$$$$$/|  $$$$$$/
+ \_______/   \___/   \______/  \______/                                        
+");
+        }
     }
 }
