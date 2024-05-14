@@ -65,6 +65,7 @@ namespace ctOS
             var input = System.Console.ReadLine();
             string filename = "";
             string dirname = "";
+            var Logos = new Logos();
             switch (input)
             {
                 default:
@@ -76,7 +77,6 @@ namespace ctOS
                     guicl.GuiMain();
                     break;
                 case "logo":
-                    var Logos = new Logos();
                     Logos.logo();
                     break;
                 case "simerr1":
@@ -131,7 +131,7 @@ datetime - print date and time
                     Cosmos.System.Power.Reboot();
                     break;
                 case "ver":
-                    var Logos = new Logos();
+                    //var Logos = new Logos();
                     Logos.logo();
                     Sys_Info();
                     break;
