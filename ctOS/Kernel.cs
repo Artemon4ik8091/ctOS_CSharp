@@ -37,6 +37,8 @@ namespace ctOS
             MouseManager.Y = 800 / 2;
             fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+            var Logos = new Logos();
+            Logos.boot_animation();
             ClearConsole();
             System.Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("devOS booted successfully.");
@@ -46,7 +48,8 @@ namespace ctOS
 
         protected override void Run()
         {
-            username = Get_username(); //да
+            
+            username = Get_username();
             System.Console.ForegroundColor = ConsoleColor.White;
             System.Console.Write("devOS {" + username + "} [" + current_directory + "] >> ");
             old_current_directory = current_directory;
@@ -126,7 +129,8 @@ datetime - print date and time
                     Cosmos.System.Power.Reboot();
                     break;
                 case "ver":
-                    Logo();
+                    var Logos = new Logos();
+                    Logos.logo();
                     Sys_Info();
                     break;
                 case "mkfile":
