@@ -46,7 +46,7 @@ namespace ctOS
 
         protected override void Run()
         {
-            username = Get_username();
+            username = Get_username(); //да
             System.Console.ForegroundColor = ConsoleColor.White;
             System.Console.Write("devOS {" + username + "} [" + current_directory + "] >> ");
             old_current_directory = current_directory;
