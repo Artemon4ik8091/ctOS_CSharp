@@ -14,6 +14,8 @@ using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
 using System.Reflection.Metadata;
 using Cosmos.System.FileSystem.FAT;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 
 namespace ctOS
@@ -43,6 +45,9 @@ namespace ctOS
             System.Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("devOS booted successfully.");
             System.Console.ForegroundColor = ConsoleColor.White;
+            System.Console.WriteLine("+--------------------------------------+");
+            System.Console.WriteLine("| To enable ethernet enter \"setauto\"   |");
+            System.Console.WriteLine("+--------------------------------------+");
             
         }
 
@@ -66,11 +71,39 @@ namespace ctOS
             string filename = "";
             string dirname = "";
             var Logos = new Logos();
+            var net = new net();
             switch (input)
             {
                 default:
                     System.Console.ForegroundColor = ConsoleColor.Red;
                     System.Console.WriteLine("Unknown command: " + input);
+                    break;
+                case "setman":
+                    net.net_manual_setup_IPv4(); 
+                    break;
+                case "setauto":
+                    net.net_auto_setup_IPv4();
+                    break;
+                case "getip":
+                    net.GetIP();
+                    break;
+                case "ping":
+                    System.Console.Write("Enter URL: ");
+                    string site = System.Console.ReadLine();
+                    for(int i = 0; i < 4; i++)                    
+                    {
+                        try
+                        {
+                            System.Console.WriteLine("Pinged! IP: " + net.dns(site));
+                        }
+                        catch(Exception ex)
+                        {
+                            System.Console.WriteLine("Ping Error!");
+                            System.Console.WriteLine(ex.ToString());
+                        }
+                        Thread.Sleep(500);
+                    }
+                    System.Console.WriteLine();
                     break;
                 case "gui":
                     var guicl = new gui();
@@ -105,6 +138,9 @@ deldir - delete directory
 simerr1 - simulate user error
 simerr2 - simulate system error
 datetime - print date and time
+ping - ping website
+setauto - auto setup ethernet
+logo - logo
 ");
                     //System.Console.ForegroundColor = ConsoleColor.Yellow;
                     //System.Console.WriteLine("ATTENTION! Commands for file system NOT STABLE!");
