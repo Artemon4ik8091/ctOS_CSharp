@@ -28,9 +28,10 @@ namespace ctOS
             }
         }
 
-        public void GetIP()
+        public string GetIP()
         {
-            Console.WriteLine("Local IP: " + NetworkConfiguration.CurrentAddress.ToString());
+            string ip = NetworkConfiguration.CurrentAddress.ToString();
+            return ip;
         }
 
         public Address dns(string site)

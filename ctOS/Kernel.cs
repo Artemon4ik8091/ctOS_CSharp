@@ -40,14 +40,17 @@ namespace ctOS
             fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
             var Logos = new Logos();
+            var net = new net();
             Logos.boot_animation();
             ClearConsole();
             System.Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("devOS booted successfully.");
             System.Console.ForegroundColor = ConsoleColor.White;
-            System.Console.WriteLine("+--------------------------------------+");
-            System.Console.WriteLine("| To enable ethernet enter \"setauto\"   |");
-            System.Console.WriteLine("+--------------------------------------+");
+            //System.Console.WriteLine("+--------------------------------------+");
+            //System.Console.WriteLine("| To enable ethernet enter \"setauto\"   |");
+            //System.Console.WriteLine("+--------------------------------------+");
+            net.net_auto_setup_IPv4();
+            
             
         }
 
@@ -81,11 +84,20 @@ namespace ctOS
                 case "setman":
                     net.net_manual_setup_IPv4(); 
                     break;
-                case "setauto":
-                    net.net_auto_setup_IPv4();
-                    break;
+                //case "setauto":
+                //    net.net_auto_setup_IPv4();
+                //    break;
                 case "getip":
-                    net.GetIP();
+                    try
+                    {
+                        string ip2 = net.GetIP();
+                        System.Console.WriteLine("Local IP: " + ip2);
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(2);
+                        System.Console.WriteLine(ex.ToString());
+                    }
                     break;
                 case "ping":
                     System.Console.Write("Enter URL: ");
@@ -111,6 +123,10 @@ namespace ctOS
                     break;
                 case "logo":
                     Logos.logo();
+                    break;
+                case "uname":
+                    string ip = net.GetIP();
+                    System.Console.WriteLine("ctOS " + ip + " 1.0 Cosmos Kernel Version 20221121");
                     break;
                 case "simerr1":
                     Error(1);
@@ -141,6 +157,7 @@ datetime - print date and time
 ping - ping website
 setauto - auto setup ethernet
 logo - logo
+getip - print your IP Address
 ");
                     //System.Console.ForegroundColor = ConsoleColor.Yellow;
                     //System.Console.WriteLine("ATTENTION! Commands for file system NOT STABLE!");
